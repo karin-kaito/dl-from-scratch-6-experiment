@@ -12,27 +12,27 @@
 | ファイル | 読了 | 実行 | 改造 | メモ |
 |---|---|---|---|---|
 | 01_char_tokenizer.py | [ ] | [x] | [ ] | 2026-07-13 Colabで実行済 / 2026-08-29 ローカル動作確認済 |
-| 02_byte_tokenizer.py | [ ] | [ ] | [ ] | |
-| 03_bpe_train.py | [ ] | [ ] | [ ] | |
-| 04_bpe_tokenizer.py | [ ] | [ ] | [ ] | |
-| 05_special_token.py | [ ] | [ ] | [ ] | |
-| 06_pretokenize.py | [ ] | [ ] | [ ] | |
-| 07_tiny_codes.py | [ ] | [ ] | [ ] | |
-| 08_eval.py | [ ] | [ ] | [ ] | |
-| 09_bpe_encode.py | [ ] | [ ] | [ ] | |
+| 02_byte_tokenizer.py | [ ] | [x] | [ ] | Colab実行済(7〜8月) |
+| 03_bpe_train.py | [ ] | [x] | [ ] | Colab実行済(7〜8月) |
+| 04_bpe_tokenizer.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 05_special_token.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 06_pretokenize.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 07_tiny_codes.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 08_eval.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 09_bpe_encode.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
 
 ## ch02 Attention・GPT-2 🖥
 
 | ファイル | 読了 | 実行 | 改造 | メモ |
 |---|---|---|---|---|
-| 01_soft_dict.py | [ ] | [ ] | [ ] | |
-| 02_attn_math.py | [ ] | [ ] | [ ] | |
-| 03_attn_scaling.py | [ ] | [ ] | [ ] | |
-| 06_attn_mask.py | [ ] | [ ] | [ ] | |
-| 07_attn_value.py | [ ] | [ ] | [ ] | |
-| 08_multi_head.py | [ ] | [ ] | [ ] | |
-| 09_norm_gelu.py | [ ] | [ ] | [ ] | |
-| 10_gpt2.py | [ ] | [ ] | [ ] | 推論のみ。CPUでも可のはず |
+| 01_soft_dict.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 02_attn_math.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 03_attn_scaling.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 06_attn_mask.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 07_attn_value.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 08_multi_head.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 09_norm_gelu.py | [ ] | [ ] | [ ] | Colab実行済(7〜8月) |
+| 10_gpt2.py | [ ] | [ ] | [ ] | 推論のみ。CPUでも可のはず / Colab実行済(7〜8月) |
 
 ## ch03 事前学習・SFT・GRPO（CodeBot）☁
 
@@ -109,7 +109,24 @@
    ```
 4. Colabが必要な回: Googleドライブの `dl-from-scratch-6/runner.ipynb` を開き、セル2の CHAPTER/SCRIPT を書き換えて上から実行
 
+### VSCodeでセル単位実行（Colabのようにブロックごとに動かしたい場合）
+
+各chXX/*.pyの `# %%` マーカーがそのままセル区切りとして使える（VSCode Python拡張のInteractive Window機能）。セットアップ済み事項:
+
+- `ipykernel` は `.venv` にインストール済み（`uv add --dev ipykernel`）
+- `.vscode/settings.json` で `python.defaultInterpreterPath` を `.venv` に固定済み
+
+新しいVSCodeウィンドウ／別PCで開いた直後は、**カーネル選択だけ手動で1回必要**（インタープリター選択が自動でもJupyterカーネルは連動しないことがある）:
+
+1. 対象の `.py` を開き、`# %%` セルの上で `Ctrl+Enter`（Interactive-1パネルが開く）
+2. パネル右上「カーネルの選択」→「Python環境...」→ `dlfs6 (3.12.13) .venv\Scripts\python.exe` を選択（星マーク付きのはず）
+3. 以降はそのウィンドウでは選び直し不要。ウィンドウを閉じて開き直した場合のみ再度必要になることがある
+4. カーネル選択後もセルが「保留中」のまま動かない場合は、パネル左上の「割り込み」→「再起動」で復旧する（2026-08-29に実際に発生・復旧確認済み）
+
 ## 学習ログ（セッションごとに1行追記）
 
 - 2026-07-13: ch01/01_char_tokenizer.py を Colab で実行（outputs/ch01 にログあり）
 - 2026-08-29: 環境整理・方針決定。ローカルで ch01/01 動作確認（PYTHONUTF8=1 必要と判明）
+- 2026-08-29: VSCode Interactive Windowでのセル単位実行をセットアップ（ipykernel追加、.vscode/settings.json、カーネル選択手順を確立）
+- 2026-10-24: 約2か月ぶりに再開。現在地確認とプロジェクト整理のみ（学習は進めず）。Colab の run/ に ch01全9本・ch02全8本の実行出力が残っている（2026-07-13〜08-07）が本表に未反映 → 次回、反映するか ch01/04 からやり直すかを決める
+- 2026-11-08: 現状確認とプロジェクト整理（`プロジェクト整理_20261108-1953.md` を作成）。学習は進めず。次は ch01/04_bpe_tokenizer.py
